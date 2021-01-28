@@ -1,4 +1,5 @@
 import sstable_tools.sstablelib as sstablelib
+import re
 
 
 METADATA_TYPE_TO_NAME = {
@@ -28,7 +29,7 @@ def read_compaction(stream, fmt):
         ('cardinality', sstablelib.Stream.instantiate(sstablelib.Stream.array32, sstablelib.Stream.uint8)),
     )
 
-    if fmt == 'mc':
+    if re.match('m[cd]', fmt):
         return sstablelib.parse(stream, mc_schema)
     else:
         return sstablelib.parse(stream, ka_la_schema)
@@ -105,7 +106,7 @@ def read_stats(stream, fmt):
         ('commitlog_intervals', sstablelib.Stream.instantiate(sstablelib.Stream.array32, commitlog_interval)),
     )
 
-    if fmt == 'mc':
+    if re.match('m[cd]', fmt):
         return sstablelib.parse(stream, mc_schema)
     else:
         return sstablelib.parse(stream, ka_la_schema)

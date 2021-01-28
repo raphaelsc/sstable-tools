@@ -7,7 +7,7 @@ import sstable_tools.scylla
 
 cmdline_parser = argparse.ArgumentParser()
 cmdline_parser.add_argument('scylla_file', help='scylla component file to parse')
-cmdline_parser.add_argument('-f', '--format', choices=['ka', 'la', 'mc'], default='mc', help='sstable format')
+cmdline_parser.add_argument('-f', '--format', choices=['ka', 'la', 'mc', 'md'], default='md', help='sstable format')
 
 args = cmdline_parser.parse_args()
 
