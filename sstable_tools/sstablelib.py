@@ -103,6 +103,10 @@ class Stream:
             else:
                 self.skip(size)
         return value
+    def enum32(self, *values):
+        d = {v: n for v, n in values}
+        return d[self.uint32()]
+
     @staticmethod
     def instantiate(template_type, *args):
         def instanciated_type(stream):
